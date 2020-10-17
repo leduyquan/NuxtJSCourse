@@ -1,0 +1,9 @@
+- Component: những component đơn giản
+- Layout:
+- Plugin:
+- Static: là những asset nhưng static không bị customize bởi webpack
+- Page:
+
+
+1. Chúng ta nên tạo folder để chứa các file index.vue trong page
+- Dễ đọc hơn
