@@ -1,0 +1,22 @@
+1. Đầu tiên là Single Page áp dụng Client Server Side
+- User (request google.com) -> Server
+- Server (index.html) -> User
+
++ Trong HTML sẽ call các script chứa toàn bộ page (Vue App)
++ Vue App sẽ chịu trách nhiệm bắt các router và trigger khi có action click,...
++ Không bao giờ phải get second page từ server nữa
+
+2. Vấn đề SEO
+- Bạn cần load những data bất đồng bộ trước khi render
+- GG Crawler sẽ không đợi bạn tải data đó nên nó sẽ thấy empty page
+
+3. Giải pháp của NUXT cho SSR
+- Có thể render page đầu tiên on the server
+- Người dùng sau đó sẽ truy cập vào bất kỳ link nào
+- Và first page này đã kết xuất trước (pre-render) trên server rồi
+- Tức là khi bạn tạo 1 page đơn giản thực sự nó đã pre-render động hoặc tĩnh rồi
++ Tức là Nuxt js đã dựa vào các file vue (router) được tạo ở thư mục page -> sau đó auto render ra các file HTML tương ứng
+
+4. Cài đặt Node.js vì 2 lý do:
+- NPM dùng để cài đặt create nuxt app và các dependencies trong project
+- Nuxt js là 1 tool start 1 nodejs server để ta có thể pre-render
