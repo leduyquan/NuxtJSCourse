@@ -1,0 +1,12 @@
+1. Handle Router Có 2 cách:
+a. Tạo file có _ (_id.vue) cho biết rằng đây là dynamic
+- NextJS sẽ tự động config vào vue-router
+- Ta sẽ truy cập id bằng cách $route.params.id
+
+b. Tạo folder (_id) và tạo file index.vue bên trong
+
+
+2. Navigate
+- Ta có thể dùng router-link nhưng nó sẽ catch tất cả các trigger và ngăn send request
+- Ta sẽ sử dụng nuxt-link: <nuxt-link to="/user"></nuxt-link>
+- this.$router.push('/user/' + this.userId)
