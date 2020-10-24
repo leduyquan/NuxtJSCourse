@@ -1,0 +1,10 @@
+- Nếu file default.vue tồn tại thì nó sẽ apply cho toàn bộ page
+- Tạo một layout mới với tên là users.vue
+- Layout là những gì chung nhất, tạo khung cho các page
+
+- Trong page, những page nào muốn chỉ định sử dụng layout nào thì sẽ thêm
+layout: 'users'  //ngang cấp với data, mounted,...
+
+
+***
+- error.vue sẽ mô tả layout nếu xuất hiện error
