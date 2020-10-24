@@ -1,9 +1,12 @@
 - Component: những component đơn giản
-- Layout:
+- Layout: tạo khung cho các page, có các file với tên đặc biệt như: default, error
 - Plugin:
 - Static: là những asset nhưng static không bị customize bởi webpack
-- Page:
+- Page: vừa là page vừa là router
 
 
 1. Chúng ta nên tạo folder để chứa các file index.vue trong page
 - Dễ đọc hơn
+
+2. Import component khác
+- Import 1 file nào đó chung ta sẽ sử dụng ~ hoặc @ để trỏ tới file cần import
