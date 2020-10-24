@@ -10,3 +10,17 @@ b. Tạo folder (_id) và tạo file index.vue bên trong
 - Ta có thể dùng router-link nhưng nó sẽ catch tất cả các trigger và ngăn send request
 - Ta sẽ sử dụng nuxt-link: <nuxt-link to="/user"></nuxt-link>
 - this.$router.push('/user/' + this.userId)
+
+
+3. Validation cho router
+export default {
+  validate(data) {
+    return data.params.id === 1; //nếu false sẽ chuyển trang fail
+  }
+}
+
+
+4. Cách tạo ra nested page (tức hiển thị 1 page khác trong 1 page)
+- Tạo 1 file cùng tên với folder ví dụ users.vue
+- File index.vue trong folder chuyển hết sang users.vue
+- File users.vue thêm <nuxt-child />
