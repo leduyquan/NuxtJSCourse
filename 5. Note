@@ -7,3 +7,9 @@
 + chúng ta sẽ sử dụng asyncData (chỉ sử dụng được trong page) cùng cấp với data và methods
 + chúng ta sẽ không khai báo các biến asyncData trong data vì các biến trong data sẽ override
 + từ khóa "this" sẽ ko sử dụng được trong asyncData vì asyncData sẽ chạy trước khi component được tạo ra
+
+3. asyncData
+async asyncData({context, $axios, params}) {
+  // context: những thông tin về env mode
+  // params: thay cho this.$route.params 
+}
