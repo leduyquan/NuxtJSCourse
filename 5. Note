@@ -1,5 +1,6 @@
 1. Chúng ta có thể add font, favicon.ico và những thứ ở header vào head trong nuxt.config.js
 
+
 2. Khi load async data thì cần phải có spinner thay vì khoảng trống
 - Nhưng không giải quyết được vấn đề SEO, bởi vì crawler google chỉ quét inital page
 - Đều chúng ta cần là fetch data ở trên server và đợi nó nạp data, sau đó mới trả về finished page
@@ -8,8 +9,10 @@
 + chúng ta sẽ không khai báo các biến asyncData trong data vì các biến trong data sẽ override
 + từ khóa "this" sẽ ko sử dụng được trong asyncData vì asyncData sẽ chạy trước khi component được tạo ra
 
+
 3. asyncData
 async asyncData({context, $axios, params}) {
   // context: những thông tin về env mode
   // params: thay cho this.$route.params 
 }
+      
