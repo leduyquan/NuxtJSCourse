@@ -1,0 +1,51 @@
+1. Có 2 cách tạo Store
+a. Classic mode:
+- Tạo 1 file tổng index.js trong thư mục store
+- Trở thành 1 store cho toàn app
+
+b. Modules mode
+- Tạo nhiều file .js trong thư mục store
+- Mỗi file sẽ là 1 store cho 1 module
+
+
+2. Cách tạo
+import Vuex from 'vuex'
+
+const createStore = () => {  //vì sao là function thay vì object: vì nó cần được callable bởi nuxt để thực thi
+  return new Vuex.Store({  // return new để mỗi module có mỗi store riêng biệt
+    state: {
+      loadedPosts: []
+    }
+    mutations: {
+      setPosts() {
+        state.loadedPosts = posts
+      }
+    }
+    actions: {
+      nuxtServerInit({commit}, context) {
+        ... call ajax
+        commit('setPosts', posts)
+      }
+      setPosts({commit, posts}) {
+        commit('setPosts', posts)
+      }
+    }
+    getters: {
+      loadedPosts(state) {
+        return state.loadedPosts
+      }
+    }
+  })
+}
+
+fetch(context) {
+  // có thể cần kiểm tra nếu có data rồi thì ko cần call ajax nữa
+  // if (context.store.state.loadedPosts.length > 0) return null
+  ... call ajax
+  context.store.commit('setPosts', data.posts)
+}
+computed: {
+  loadedPost(){
+    return this.$store.getters.loadedPosts
+  }
+}
