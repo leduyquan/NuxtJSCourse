@@ -1,0 +1,49 @@
+1. Điều hướng nếu có đường link khác
+router: {
+  extendRoutes(routes, resolve) {
+    routes.push({
+      path: '*',
+      component: resolve(__dirname, 'pages/index.vue')
+    })
+  } 
+}
+
+
+2. import css cho all page ở
+css: [
+  '@/assets/less/all.less'
+],
+
+
+3. Transition: chuyển đổi giữa các page smooly
+- Đầu tiên ta có css
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+- config vào transition (ta có tên là 'fade')
+transition: {
+  name: 'fade',
+  mode: 'out-in',
+}
+
+
+4. Plugin
+- Nó sẽ load các function và thực thi code trước khi app đã được render và mounted
++ Khai báo các file plugin muốn được sử dụng global như axios,... vào trong thư mục plugins
++ Config trong nuxt.config.js
+plugins: [
+  '@/plugins/antd-ui',
+  '@/plugins/axios',
+  '@/plugins/global-filters',
+  {
+    src: '@/plugins/vee-validate',
+    ssr: false
+  },
+  '@/plugins/vue-slick-carousel'
+],
+  
+
