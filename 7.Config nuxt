@@ -33,7 +33,7 @@ transition: {
 
 4. Plugin
 - Nó sẽ load các function và thực thi code trước khi app đã được render và mounted
-+ Khai báo các file plugin muốn được sử dụng global như axios,... vào trong thư mục plugins
++ Khai báo các file plugin muốn được sử dụng global như axios, filter... vào trong thư mục plugins
 + Config trong nuxt.config.js
 plugins: [
   '@/plugins/antd-ui',
@@ -47,3 +47,17 @@ plugins: [
 ],
   
 
+5. Module
++ Add vào để có thể customize lại như axios, auth
++ Search những modules được nuxt support trên github
+modules: [
+  '@nuxtjs/axios',
+  '@nuxtjs/auth'
+],
+axios: {
+  baseURL: 'http://42.185.232.68:8000/api/v1/',  //sẽ ko replace baseUrl mặc định
+  credentials: false
+}, => chúng ta sẽ sử dụng this.$axios hoặc app.$axios thay cho axios     => this.$axios.$get()
+auth: {
+  ...customize
+}
