@@ -1,11 +1,17 @@
 1 Định nghĩa
-- Middleware mô tả 1 function được execute trước khi 1 route được load (page được load)
+- Middleware mô tả 1 function được execute trước khi 1 route được load (page được load) trong first time
 - Và bạn có thể đính kèm middleware cho tất cả routes
 
 Ex:
 - Tạo 1 file log.js trong thư mục middleware
 - Những function trong file này sẽ được thực thi trước khi page được load
 
+//middleware/log.js
 export default function (context) {
   console.log('Middleware')
 }
+
+- Trong component nào muốn sử dụng thì
+middleware: 'log' //refer to log.js trong thư mục middleware
+
+- Sử dụng trong layout thì sẽ apply cho các component
