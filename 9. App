@@ -1,0 +1,21 @@
+1. Chúng ta có 3 mode do Nuxt cung cấp
+- Universal
++ UI được render động trên Server
++ Sau first load, App chuyển sang chế độ SPA
++ Cần Nodejs Host vì các pages được tạo ngay lập tức mỗi khi có request
+
+- SPA
++ App được render lên client không chứa content mà chỉ có đoạn script để refer vào script của all pages
++ Static host
+
+- Static
++ Ta sẽ pre-render (kết xuất trước) ra các HTML tĩnh trong quá trình development
++ Ta sẽ ko cần node server
++ In the end, sẽ gửi lên client những HTML đã được tạo trước
++ Static host
+
+
+2. Work
+- Universal
++ Bạn sẽ deploy và đưa toàn bộ project folder lên các nhà cung cấp hosting (node host)
++ Sẽ cần chạy npm start trên hosting server để deploy code
