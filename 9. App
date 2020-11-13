@@ -18,6 +18,7 @@
 2. Work
 - Universal (Deploying a Universal App)
 ** Bạn sẽ deploy và đưa toàn bộ project folder lên các nhà cung cấp hosting (node host)
++ Set mode là 'universal'
 + Đầu tiên cần build app: npm run build -> bundle sẽ vào trong thư mục .nuxt/
 + Sau đó uppload TOÀN BỘ project: .nuxt/, node_modules, package.json,... lên webserver (Webserver này sẽ chạy Node.js)
 + Bạn có thể chọn hosting provider như Heroku hay AWS
@@ -27,6 +28,7 @@
 
 
 - SPA
++ Set mode là 'spa'
 + Đầu tiên cần build app: npm run build -> bundle sẽ vào trong thư mục dist (ko phải .nuxt/)
 + Với SPA, ta chỉ cần deploy mỗi dist folder
 + Lưu ý: sẽ ko có bất kỳ pre-render nào, ko có gì render từ server cả
@@ -34,3 +36,56 @@
 + Sau đó chỉ cần update dist folder lên 1 static host
 + Có thể test bằng cách install http-server vào app: sau đó point tới dist gõ: http-server -p 8082
 + Những method liên quan tới server sẽ ko work như: nuxtSeverInit,... thay và đó là created hay mounted
+
+
+- Static web
++ Set mode là 'universal', cũng work với spa nhưng ko ấn tượng
++ Chúng ta sẽ gõ: npm run generate
++ Nó sẽ tạo ra toàn bộ các trang (pages) trong app
++ Trong thư mục dist, chúng ta sẽ có các folder chứa các file HTML
++ Toàn bộ content sẽ có trong từng file HTML đó
++ -> Các pages trên client đã được pre-rendered (kết xuất trước)
++ Vẫn có hiệu ứng single page app
+
++ Bạn sẽ ko cần những pre-redender page trên server -> ko cần Node server
++ Nhưng những trang có dynamic routes như trang detail: /post/5  /post/6 sẽ không được pre-render
+** Vì đơn giản Nuxt ko biết được trước sẽ có những routes nào
+
+
+3. Improve issue về pre-render của Static app
+- Vào nuxt.config.js sẽ khai báo 1 mảng các dynamic routes cần pre-render
+generate: {
+  routes: function(){
+    return [
+      '/post/4',
+      '/post/6'
+    ]
+  }
+}
+
+- Đối với nhiều dynamic routes thì:
+generate: {
+  routes: function() {
+    return axios.get('https:...get all post')
+      .then(res => {
+        const routes = []
+        for (const key in res.data) {
+          routes.push({
+            path: '/post/' + key,
+            payload: { postData: res.data[key] }  //truyền data lên page detail index
+          })
+        }
+        return routes
+      })
+  }
+}
+
++ Ở page detail index
+asyncData(context) {
+  if(context.payload) {
+    return {
+      loadedPost: context.payload.postData
+    }
+  }
+}
+
