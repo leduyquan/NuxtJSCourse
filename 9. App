@@ -16,6 +16,21 @@
 
 
 2. Work
-- Universal
-+ Bạn sẽ deploy và đưa toàn bộ project folder lên các nhà cung cấp hosting (node host)
-+ Sẽ cần chạy npm start trên hosting server để deploy code
+- Universal (Deploying a Universal App)
+** Bạn sẽ deploy và đưa toàn bộ project folder lên các nhà cung cấp hosting (node host)
++ Đầu tiên cần build app: npm run build -> bundle sẽ vào trong thư mục .nuxt/
++ Sau đó uppload TOÀN BỘ project: .nuxt/, node_modules, package.json,... lên webserver (Webserver này sẽ chạy Node.js)
++ Bạn có thể chọn hosting provider như Heroku hay AWS
++ Tùy vào provider hosting bạn có thể sẽ ko cần upload node_modules vì lệnh npm install được chạy tự động trên webserver
++ Đảm bảo lệnh npm start chạy được và đúng là npm start (mặc định trên hosting)
++ npm start sẽ khởi động Node server của provider -> config bởi Nuxt và kích hoạt server side redering của Vue app
+
+
+- SPA
++ Đầu tiên cần build app: npm run build -> bundle sẽ vào trong thư mục dist (ko phải .nuxt/)
++ Với SPA, ta chỉ cần deploy mỗi dist folder
++ Lưu ý: sẽ ko có bất kỳ pre-render nào, ko có gì render từ server cả
++ Lưu ý: đảm bảo rằng bạn thiết lập server để luôn trả về index.html.
++ Sau đó chỉ cần update dist folder lên 1 static host
++ Có thể test bằng cách install http-server vào app: sau đó point tới dist gõ: http-server -p 8082
++ Những method liên quan tới server sẽ ko work như: nuxtSeverInit,... thay và đó là created hay mounted
